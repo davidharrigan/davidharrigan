@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>About on David Harrigan</title>
+    <link>https://davidharrigan.github.io/about/</link>
+    <description>Recent content in About on David Harrigan</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 17 Apr 2018 19:38:59 -0400</lastBuildDate>
+    
+	<atom:link href="https://davidharrigan.github.io/about/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>
