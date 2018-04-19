@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>David Harrigan</title>
-    <link>https://davidharrigan.github.io/</link>
+    <link>http://harrigan.xyz/</link>
     <description>Recent content on David Harrigan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="https://davidharrigan.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://harrigan.xyz/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
