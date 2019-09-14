@@ -3,11 +3,63 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://harrigan.xyz/blog/</loc>
+    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://harrigan.xyz/categories/</loc>
+    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>http://harrigan.xyz/</loc>
+    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://harrigan.xyz/tags/development/</loc>
+    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://harrigan.xyz/categories/development/</loc>
+    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://harrigan.xyz/tags/go/</loc>
+    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://harrigan.xyz/categories/golang/</loc>
+    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://harrigan.xyz/tags/golang/</loc>
+    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://harrigan.xyz/blog/integration-testing-with-golang/</loc>
+    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://harrigan.xyz/tags/</loc>
+    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://harrigan.xyz/tags/testing/</loc>
+    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://harrigan.xyz/categories/testing/</loc>
+    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -16,10 +68,6 @@
   
   <url>
     <loc>http://harrigan.xyz/license/</loc>
-  </url>
-  
-  <url>
-    <loc>http://harrigan.xyz/tags/</loc>
   </url>
   
 </urlset>

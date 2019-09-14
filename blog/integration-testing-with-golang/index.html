@@ -15,22 +15,22 @@
 <meta property="og:site_name" content="David Harrigan" />
 <meta property="og:locale" content="en-us" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://harrigan.xyz/home/" />
-<meta property="og:title" content="Home" />
-<meta property="twitter:title" content="Home">
+<meta property="og:url" content="http://harrigan.xyz/blog/integration-testing-with-golang/" />
+<meta property="og:title" content="Integration Testing with Golang" />
+<meta property="twitter:title" content="Integration Testing with Golang">
 
     <meta property="twitter:card" content="summary">
 
-<meta property="og:description" content="">
-<meta property="twitter:description" content="">
+<meta property="og:description" content="How to create integration tests with Golang">
+<meta property="twitter:description" content="How to create integration tests with Golang">
 
 <title>
 
 
-     David Harrigan - Home 
+     David Harrigan - Integration Testing with Golang 
 
 </title>
-<link rel="canonical" href="http://harrigan.xyz/home/">
+<link rel="canonical" href="http://harrigan.xyz/blog/integration-testing-with-golang/">
 
 
 <style media="screen">
@@ -1020,26 +1020,353 @@ margin-left: -4%;
 
 
 
-<div class="main column">
+
+
+<div class="main post non-narrow zero-top-spacing column">
     <div class="container">
         <div class="content">
-            <div class="page-heading">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
 
     
-    Home
+    Integration Testing with Golang
     
 
 </div>
 
+                </div>
+                <div class="meta">
+                    <div class="date" title="Sat Sep 14 2019 00:00:00 UTC">Sep 14, 2019</div>
+                    
+                        
+                    
+                    
+                    <div class="reading-time middot">5 minute read</div>
+                    
+                    
+                      <div class="tags">
+                    
+                        <ul>
+                          
+                            <li class="middot"><a href="/tags/go">go</a> </li>
+                          
+                            <li class="middot"><a href="/tags/golang">golang</a> </li>
+                          
+                            <li class="middot"><a href="/tags/development">development</a> </li>
+                          
+                            <li class="middot"><a href="/tags/testing">testing</a> </li>
+                          
+                        </ul>
+                    </div>
+                    <div class="tags">
+                        <ul>
+                          
+                          
+                        </ul>
+                    </div>
+                </div>
+            </div>
             <div class="markdown">
                 
-    <p>Hi there. My name is David Harrigan. I&rsquo;m a software engineer from New
-Hampshire.</p>
+    
 
-<p>I like Golang, Python, and my puppy Blue.</p>
+<p>At my previous job, I came to appreciate the importance of integration
+testing. Not only does it give us confidence (especially when we’re on-call),
+but it continuously verified that our services were functional through
+automated runs from Jenkins.</p>
+
+<p>Two of the primary languages used at the time were Go and Python. Although
+the majority of our services were written in Go, most of our API tests were
+written in Python. Writing stand-alone tests is fairly straightforward in
+Python. At the simplest level, you just need a single file that sets up
+tests, uses requests to make calls, and assert the responses.</p>
+
+<p>I wanted to know a way to do something similar in Go.</p>
+
+<h2 id="goals">Goals</h2>
+
+<ul>
+<li>Easy to write and leverages the standard <code>testing</code> package.</li>
+<li>Test setup function tests that configures dependencies, such as
+client config to call services in the desired environment (local, staging,
+production, etc).</li>
+<li>Standalone tests that are isolated from unit tests. This is either a plus
+or minus depending on who you ask, I still don&rsquo;t know the answer 😅. I like
+to think that this is a plus. Integration tests should ideally treat the
+target service as a black-box and simply expect some output. There are other
+reasons as well that we will get to in this post.</li>
+<li>A binary can be produced that can run from CI/CD.</li>
+</ul>
+
+<h2 id="setup">Setup</h2>
+
+<p>To easily verify my goals, I created a very simple gRPC service that
+I can run against. There are two endpoints - <code>Ping</code> and <code>StreamPing</code>. Calling
+<code>Ping</code> simply replies with (you guessed it!) a <code>pong</code> message. <code>StreamPing</code>
+is similar, but you can specify how many times it <code>pong</code>&rsquo;s back.</p>
+
+<pre><code class="language-protobuf">syntax = &quot;proto3&quot;;
+
+package ping;
+
+option go_package = &quot;protos&quot;;
+
+service Pinger {
+    rpc Ping(PingRequest) returns (PingResponse) {}
+    rpc PingStream (PingRequest) returns (stream PingResponse) {}
+}
+
+message PingRequest {
+    int32 count = 1;
+}
+
+
+message PingResponse {
+    bytes payload = 1;
+}
+</code></pre>
+
+<p>I wrote a unit test, and I also added a top-level <code>testing</code> package where I intend to store isolated tests.  In the end, I ended on the following structure:</p>
+
+<pre><code>├── Makefile
+├── go.mod
+├── go.sum
+├── grpc
+│   └── protos
+│       ├── ping.pb.go
+│       └── ping.proto
+├── service
+│   ├── main.go
+│   └── pinger
+│       ├── pinger.go
+│       └── pinger_test.go
+└── testing
+    ├── config
+    │   └── config.go
+    └── integration
+        └── pinger
+            ├── integration_test.go
+            └── main_test.go
+</code></pre>
+
+<h2 id="using-the-build-tag">Using the build tag</h2>
+
+<p>Go allows you to specify build tags to consider during a build. This concept
+also applies to tests. This means that one way to separate unit tests from
+more time-consuming tests such as integration tests is to mark these files
+with the appropriate build tag to skip them altogether.</p>
+
+<p>My <code>integration_test.go</code> file has a build tag of:</p>
+
+<pre><code class="language-go">// +build integration
+
+package pinger
+</code></pre>
+
+<p>This allows us to skip tests in that file when I just want to run unit tests
+in our project.</p>
+
+<h2 id="using-testmain">Using <code>TestMain</code></h2>
+
+<p><code>TestMain</code> allows us to set up the necessary setup and teardown for our test
+cases. This is precisely what we need to set up our clients and dependencies
+needed for running integration tests against any environment.</p>
+
+<p>Note that this must be placed in the same package as to where our integration
+tests live. This is the other reason why in this case, it is better to have a
+dedicated package for integration tests. The alternative is to have an <code>init()</code>
+func or have multiple <code>TestMain</code> for all packages with the <code>+build integration</code>
+build flag, which did not appeal to me.</p>
+
+<p>We can also read from <code>flag</code> from <code>TestMain</code>. This allowed me to set up flags
+that can be specified from the command line to specify my server address and
+port. All of the configuration values were then saved to variables under the
+<code>config</code> package. I also added another flag, <code>integrationLocal</code>. If this flag
+is specified, it runs the server from the test, meaning I can quickly verify
+my service is working without having to spin up an entire local environment.
+We could take this a little further and inject mocks for other services that
+it depends on so that it can run without any dependencies.</p>
+
+<p>In the end, this is what my <code>main_test.go</code> file ended looking like.</p>
+
+<pre><code class="language-go">// +build integration
+
+package pinger
+
+import (
+	&quot;flag&quot;
+	&quot;log&quot;
+	&quot;os&quot;
+	&quot;testing&quot;
+
+	&quot;github.com/davidharrigan/pinger/testing/config&quot;
+)
+
+var integrationLocal = flag.Bool(&quot;integration-local&quot;, false, &quot;spin up a local instance of pinger within the test&quot;)
+var pingerAddress = flag.String(&quot;pinger-address&quot;, &quot;localhost&quot;, &quot;pinger address&quot;)
+var pingerPort = flag.Int(&quot;pinger-port&quot;, 50051, &quot;pinger port&quot;)
+
+func TestMain(m *testing.M) {
+	flag.Parse()
+
+	if *integrationLocal {
+		go func() {
+			s := config.Pinger()
+			defer s.Stop()
+		}()
+	} else {
+		log.Println(&quot;&gt;&gt;&gt; running in integration mode&quot;)
+		config.PingerConfig = config.ServerConfig{
+			Address: *pingerAddress,
+			Port:    *pingerPort,
+		}
+	}
+
+	os.Exit(m.Run())
+}
+</code></pre>
+
+<h2 id="writing-integration-tests">Writing integration tests</h2>
+
+<p>Now we have all the pieces needed to use the standard <code>testing.T</code> to write
+our integration tests. The only extra step we need is to read the client
+configuration from our <code>config</code> package, but otherwise, it is as simple as
+writing any other Golang tests.</p>
+
+<pre><code class="language-go">// +build integration
+
+package pinger
+
+import (
+	&quot;context&quot;
+	&quot;fmt&quot;
+	&quot;io&quot;
+	&quot;testing&quot;
+	&quot;time&quot;
+
+	&quot;github.com/stretchr/testify/assert&quot;
+	&quot;google.golang.org/grpc&quot;
+
+	pb &quot;github.com/davidharrigan/pinger/grpc/protos&quot;
+	&quot;github.com/davidharrigan/pinger/testing/config&quot;
+)
+
+func address() string {
+	return fmt.Sprintf(&quot;%s:%d&quot;, config.PingerConfig.Address, config.PingerConfig.Port)
+}
+
+func TestPinger(t *testing.T) {
+
+	type expectation struct {
+		out *pb.PingResponse
+		err error
+	}
+
+	tcs := map[string]struct {
+		in       *pb.PingRequest
+		expected expectation
+	}{
+		&quot;ok&quot;: {
+			in: &amp;pb.PingRequest{},
+			expected: expectation{
+				out: &amp;pb.PingResponse{
+					Payload: []byte(`pong`),
+				},
+			},
+		},
+	}
+
+	for scenario, tc := range tcs {
+		t.Run(scenario, func(t *testing.T) {
+			assert := assert.New(t)
+
+			conn, err := grpc.Dial(address(), grpc.WithInsecure())
+			assert.Nil(err)
+			defer conn.Close()
+
+			c := pb.NewPingerClient(conn)
+			ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+			defer cancel()
+
+			out, err := c.Ping(ctx, tc.in)
+			assert.Nil(err)
+
+			if tc.expected.err == nil {
+				assert.Nil(err)
+				assert.Equal(tc.expected.out, out)
+			} else {
+				assert.Nil(out)
+				assert.Equal(tc.expected.err, err)
+			}
+		})
+	}
+}
+</code></pre>
+
+<h2 id="compiling-the-test-binary">Compiling the test binary</h2>
+
+<p>Now, the only thing left for us to do is produce a binary of integration
+tests. We can specify the <code>-c</code> flag from <code>go test</code> to compile the test binary
+without running it:</p>
+
+<pre><code class="language-bash">go test -tags integration -c ./testing/integration/...
+</code></pre>
+
+<p>This is another case why having integration tests isolated works out well.
+Our binary only contains the integration tests.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>I hope you found this writeup useful. I believe we managed to accomplish all
+the goals I proposed in the beginning. I would love to know other approaches
+that are out there that accomplishes something similar or any drawbacks to
+the one I presented here. If you would like the see the full source of this
+testing setup, you can check it out in <a href="https://github.com/davidharrigan/pinger">https://github.com/davidharrigan/pinger</a></p>
 
 
             </div>
+            
+            
+            <br>
+            <div class="navigation">
+                
+                <div style="width: 100%;"></div>
+                
+            </div>
+            
+            
+            <br>
+            <div class="disqus">
+                <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "david_harrigan" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+            
+
+            
+            
+
+            
+
+            
         </div>
     </div>
 </div>
