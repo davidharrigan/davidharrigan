@@ -2,48 +2,48 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on David Harrigan</title>
-    <link>http://harrigan.xyz/tags/</link>
+    <link>https://harrigan.xyz/tags/</link>
     <description>Recent content in Tags on David Harrigan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 14 Sep 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://harrigan.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://harrigan.xyz/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>development</title>
-      <link>http://harrigan.xyz/tags/development/</link>
+      <link>https://harrigan.xyz/tags/development/</link>
       <pubDate>Sat, 14 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://harrigan.xyz/tags/development/</guid>
+      <guid>https://harrigan.xyz/tags/development/</guid>
       <description></description>
     </item>
     
     <item>
       <title>go</title>
-      <link>http://harrigan.xyz/tags/go/</link>
+      <link>https://harrigan.xyz/tags/go/</link>
       <pubDate>Sat, 14 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://harrigan.xyz/tags/go/</guid>
+      <guid>https://harrigan.xyz/tags/go/</guid>
       <description></description>
     </item>
     
     <item>
       <title>golang</title>
-      <link>http://harrigan.xyz/tags/golang/</link>
+      <link>https://harrigan.xyz/tags/golang/</link>
       <pubDate>Sat, 14 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://harrigan.xyz/tags/golang/</guid>
+      <guid>https://harrigan.xyz/tags/golang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>testing</title>
-      <link>http://harrigan.xyz/tags/testing/</link>
+      <link>https://harrigan.xyz/tags/testing/</link>
       <pubDate>Sat, 14 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>http://harrigan.xyz/tags/testing/</guid>
+      <guid>https://harrigan.xyz/tags/testing/</guid>
       <description></description>
     </item>
     

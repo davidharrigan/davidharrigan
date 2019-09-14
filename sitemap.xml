@@ -3,71 +3,71 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://harrigan.xyz/blog/</loc>
+    <loc>https://harrigan.xyz/blog/</loc>
     <lastmod>2019-09-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://harrigan.xyz/categories/</loc>
+    <loc>https://harrigan.xyz/categories/</loc>
     <lastmod>2019-09-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://harrigan.xyz/</loc>
+    <loc>https://harrigan.xyz/</loc>
     <lastmod>2019-09-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://harrigan.xyz/tags/development/</loc>
+    <loc>https://harrigan.xyz/tags/development/</loc>
     <lastmod>2019-09-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://harrigan.xyz/categories/development/</loc>
+    <loc>https://harrigan.xyz/categories/development/</loc>
     <lastmod>2019-09-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://harrigan.xyz/tags/go/</loc>
+    <loc>https://harrigan.xyz/tags/go/</loc>
     <lastmod>2019-09-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://harrigan.xyz/categories/golang/</loc>
+    <loc>https://harrigan.xyz/categories/golang/</loc>
     <lastmod>2019-09-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://harrigan.xyz/tags/golang/</loc>
+    <loc>https://harrigan.xyz/tags/golang/</loc>
     <lastmod>2019-09-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://harrigan.xyz/blog/integration-testing-with-golang/</loc>
+    <loc>https://harrigan.xyz/blog/integration-testing-with-golang/</loc>
     <lastmod>2019-09-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://harrigan.xyz/tags/</loc>
+    <loc>https://harrigan.xyz/tags/</loc>
     <lastmod>2019-09-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://harrigan.xyz/tags/testing/</loc>
+    <loc>https://harrigan.xyz/tags/testing/</loc>
     <lastmod>2019-09-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://harrigan.xyz/categories/testing/</loc>
+    <loc>https://harrigan.xyz/categories/testing/</loc>
     <lastmod>2019-09-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://harrigan.xyz/home/</loc>
+    <loc>https://harrigan.xyz/home/</loc>
   </url>
   
   <url>
-    <loc>http://harrigan.xyz/license/</loc>
+    <loc>https://harrigan.xyz/license/</loc>
   </url>
   
 </urlset>
