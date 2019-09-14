@@ -3,23 +3,23 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://harrigan.xyz/about/</loc>
-    <lastmod>2018-04-17T19:38:59-04:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://harrigan.xyz/categories/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>http://harrigan.xyz/</loc>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://harrigan.xyz/home/</loc>
+  </url>
+  
+  <url>
+    <loc>http://harrigan.xyz/license/</loc>
   </url>
   
   <url>
     <loc>http://harrigan.xyz/tags/</loc>
-    <priority>0</priority>
   </url>
   
 </urlset>
