@@ -63,7 +63,7 @@
   </url>
   
   <url>
-    <loc>https://harrigan.xyz/blog/testing-go-grpc-server-using-in-memory-buffer-with-bufconn/</loc>
+    <loc>https://harrigan.xyz/blog/testing-go-grpc-server-using-an-in-memory-buffer-with-bufconn/</loc>
     <lastmod>2019-01-17T00:00:00+00:00</lastmod>
   </url>
   

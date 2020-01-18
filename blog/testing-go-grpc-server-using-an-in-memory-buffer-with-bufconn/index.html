@@ -15,22 +15,22 @@
 <meta property="og:site_name" content="David Harrigan" />
 <meta property="og:locale" content="en-us" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://harrigan.xyz/blog/testing-go-grpc-server-using-in-memory-buffer-with-bufconn/" />
-<meta property="og:title" content="Testing Go gRPC Server Using in-memory Buffer with `bufconn`" />
-<meta property="twitter:title" content="Testing Go gRPC Server Using in-memory Buffer with `bufconn`">
+<meta property="og:url" content="https://harrigan.xyz/blog/testing-go-grpc-server-using-an-in-memory-buffer-with-bufconn/" />
+<meta property="og:title" content="Testing Go gRPC Server Using an in-memory Buffer with `bufconn`" />
+<meta property="twitter:title" content="Testing Go gRPC Server Using an in-memory Buffer with `bufconn`">
 
     <meta property="twitter:card" content="summary">
 
-<meta property="og:description" content="Testing Go gRPC Server Using in-memory Buffer with `bufconn`">
-<meta property="twitter:description" content="Testing Go gRPC Server Using in-memory Buffer with `bufconn`">
+<meta property="og:description" content="Testing Go gRPC Server Using an in-memory Buffer with `bufconn`">
+<meta property="twitter:description" content="Testing Go gRPC Server Using an in-memory Buffer with `bufconn`">
 
 <title>
 
 
-     David Harrigan - Testing Go gRPC Server Using in-memory Buffer with `bufconn` 
+     David Harrigan - Testing Go gRPC Server Using an in-memory Buffer with `bufconn` 
 
 </title>
-<link rel="canonical" href="https://harrigan.xyz/blog/testing-go-grpc-server-using-in-memory-buffer-with-bufconn/">
+<link rel="canonical" href="https://harrigan.xyz/blog/testing-go-grpc-server-using-an-in-memory-buffer-with-bufconn/">
 
 
 <style media="screen">
@@ -1030,7 +1030,7 @@ margin-left: -4%;
                     <div class="page-heading">
 
     
-    Testing Go gRPC Server Using in-memory Buffer with `bufconn`
+    Testing Go gRPC Server Using an in-memory Buffer with `bufconn`
     
 
 </div>
@@ -1072,14 +1072,16 @@ margin-left: -4%;
     
 
 <p>It can be cumbersome to setup a testing environment targeting a live server
-to implement full API testinng on your gRPC server. Even spinning up a server
-from your test file can lead to unintended consequences that require you to
-allocate a TCP port (parallel runs, multiple runs under same CI server).</p>
+to implement full API testing against your gRPC server. Even spinning up a
+server from your test file can lead to unintended consequences that require
+you to allocate a TCP port (parallel runs, multiple runs under same CI
+server).</p>
 
 <p><a href="https://godoc.org/google.golang.org/grpc/test/bufconn">bufconn</a> is a package
 which provides a <code>Listener</code> object that implements <code>net.Conn</code>. We can
-substitute this listener in a gRPC server - allowing us to spin up a gRPC
-server that acts as a full-fledged server that can be used for testing.</p>
+substitute this listener in a gRPC server - allowing us to spin up a server
+that acts as a full-fledged server that can be used for testing that talks
+over an in-memory buffer instead of a real port.</p>
 
 <h2 id="goals">Goals</h2>
 
@@ -1118,7 +1120,7 @@ message PingResponse {
 
 <h2 id="using-bufconn">Using <code>bufconn</code></h2>
 
-<p>To easily sping up a server and a client that talk over the <code>bufconn</code> buffer,
+<p>To easily spin up a server and a client that talk over a <code>bufconn</code> buffer,
 I created a function that is called by the test file:</p>
 
 <pre><code class="language-go">func server(ctx context.Context) (pb.PingerClient, func()) {
@@ -1148,14 +1150,17 @@ I created a function that is called by the test file:</p>
 }
 </code></pre>
 
-<p>Important thing to note here are:
-- Spin up gRPC server using the bufconn buffer
-- Create a client that talks over the buffer using <code>gRPC.WithContextDialer</code>
-- A convenient function to terminatte the listener and the server</p>
+<p>Important thing to note here are, this function:</p>
 
-<h3 id="using-the-bufconn-client">Using the <code>bufconn</code> client</h3>
+<ul>
+<li>Spins up gRPC server using the bufconn buffer</li>
+<li>Creates a client that talks over the buffer using <code>gRPC.WithContextDialer</code></li>
+<li>Returns function to terminate the listener and the server</li>
+</ul>
 
-<p>With the above function, test rest are easy:</p>
+<h2 id="using-the-bufconn-client">Using the <code>bufconn</code> client</h2>
+
+<p>With the above function, the rest are easy:</p>
 
 <pre><code class="language-go">ctx := context.Background()
 assert := assert.New(t)
@@ -1175,9 +1180,10 @@ if tc.expected.err == nil {
 }
 </code></pre>
 
-<p>That is the meat of my test. It uses the <code>server</code> function, after making
-sure the <code>closer</code> is defered, it uses the client to make a request. The
-response is asserted against expectation.</p>
+<p>That is the meat of my test. It uses the <code>server</code> function, after making sure
+the <code>closer</code> is defered, it uses the client to make a request. The response
+is asserted against expectation. This all happens against a gRPC server,
+except it uses <code>bufconn</code> instead of a TCP socket.</p>
 
 <p>Source code for the full setup is available
 <a href="https://github.com/davidharrigan/bufconn-test">here</a>.</p>
