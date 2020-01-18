@@ -18,12 +18,12 @@
   </url>
   
   <url>
-    <loc>https://harrigan.xyz/tags/development/</loc>
+    <loc>https://harrigan.xyz/categories/development/</loc>
     <lastmod>2019-09-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://harrigan.xyz/categories/development/</loc>
+    <loc>https://harrigan.xyz/tags/development/</loc>
     <lastmod>2019-09-14T00:00:00+00:00</lastmod>
   </url>
   
@@ -60,6 +60,11 @@
   <url>
     <loc>https://harrigan.xyz/categories/testing/</loc>
     <lastmod>2019-09-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://harrigan.xyz/blog/testing-go-grpc-server-using-in-memory-buffer-with-bufconn/</loc>
+    <lastmod>2019-01-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>

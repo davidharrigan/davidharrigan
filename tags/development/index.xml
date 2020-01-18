@@ -21,5 +21,15 @@
 Two of the primary languages used at the time were Go and Python. Although the majority of our services were written in Go, most of our API tests were written in Python.</description>
     </item>
     
+    <item>
+      <title>Testing Go gRPC Server Using in-memory Buffer with `bufconn`</title>
+      <link>https://harrigan.xyz/blog/testing-go-grpc-server-using-in-memory-buffer-with-bufconn/</link>
+      <pubDate>Thu, 17 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://harrigan.xyz/blog/testing-go-grpc-server-using-in-memory-buffer-with-bufconn/</guid>
+      <description>It can be cumbersome to setup a testing environment targeting a live server to implement full API testinng on your gRPC server. Even spinning up a server from your test file can lead to unintended consequences that require you to allocate a TCP port (parallel runs, multiple runs under same CI server).
+bufconn is a package which provides a Listener object that implements net.Conn. We can substitute this listener in a gRPC server - allowing us to spin up a gRPC server that acts as a full-fledged server that can be used for testing.</description>
+    </item>
+    
   </channel>
 </rss>
