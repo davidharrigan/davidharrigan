@@ -6,7 +6,7 @@
     <description>Recent content in Categories on David Harrigan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 14 Sep 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 17 Jan 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://harrigan.xyz/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>development</title>
       <link>https://harrigan.xyz/categories/development/</link>
-      <pubDate>Sat, 14 Sep 2019 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://harrigan.xyz/categories/development/</guid>
       <description></description>
@@ -23,7 +23,7 @@
     <item>
       <title>golang</title>
       <link>https://harrigan.xyz/categories/golang/</link>
-      <pubDate>Sat, 14 Sep 2019 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://harrigan.xyz/categories/golang/</guid>
       <description></description>
@@ -32,7 +32,7 @@
     <item>
       <title>testing</title>
       <link>https://harrigan.xyz/categories/testing/</link>
-      <pubDate>Sat, 14 Sep 2019 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://harrigan.xyz/categories/testing/</guid>
       <description></description>

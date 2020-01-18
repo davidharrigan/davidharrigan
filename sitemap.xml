@@ -4,67 +4,67 @@
   
   <url>
     <loc>https://harrigan.xyz/blog/</loc>
-    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
+    <lastmod>2020-01-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://harrigan.xyz/categories/</loc>
-    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
+    <lastmod>2020-01-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://harrigan.xyz/</loc>
-    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
+    <lastmod>2020-01-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://harrigan.xyz/categories/development/</loc>
-    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
+    <lastmod>2020-01-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://harrigan.xyz/tags/development/</loc>
-    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
+    <lastmod>2020-01-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://harrigan.xyz/tags/go/</loc>
-    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
+    <lastmod>2020-01-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://harrigan.xyz/categories/golang/</loc>
-    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
+    <lastmod>2020-01-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://harrigan.xyz/tags/golang/</loc>
-    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
+    <lastmod>2020-01-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://harrigan.xyz/tags/</loc>
+    <lastmod>2020-01-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://harrigan.xyz/tags/testing/</loc>
+    <lastmod>2020-01-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://harrigan.xyz/categories/testing/</loc>
+    <lastmod>2020-01-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://harrigan.xyz/blog/testing-go-grpc-server-using-an-in-memory-buffer-with-bufconn/</loc>
+    <lastmod>2020-01-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://harrigan.xyz/blog/integration-testing-with-golang/</loc>
     <lastmod>2019-09-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://harrigan.xyz/tags/</loc>
-    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://harrigan.xyz/tags/testing/</loc>
-    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://harrigan.xyz/categories/testing/</loc>
-    <lastmod>2019-09-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://harrigan.xyz/blog/testing-go-grpc-server-using-an-in-memory-buffer-with-bufconn/</loc>
-    <lastmod>2019-01-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
